@@ -21,9 +21,11 @@ class CreateStudiesTable extends Migration
             $table->enum('status', ['Finalizado', 'Em atraso', 'Em andamento']);
 
             $table->bigInteger('area_id')->unsigned();
+            
             $table->foreign('area_id')
-                  ->references('id')
-                  ->on('areas');
+                ->references('id')
+                ->on('areas');
+
 
             $table->timestamps();
         });

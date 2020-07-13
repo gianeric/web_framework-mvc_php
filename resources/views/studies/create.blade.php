@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container">
+    <h1>Cadastro de Estudos</h1>
 
-    @if ($errors->any())
+    @if($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -13,10 +14,8 @@
     </div>
     @endif
 
-    <h1>Cadastro de Áreas</h1>
-
-    <form action="{{ route('areas.store') }}" method="post">
-        @include('areas._partial.form')
+    <form action="{{ route('studies.store') }}" method="post" class="mt-3">
+        @include('studies._partial.form')
     </form>
 </div>
 @endsection

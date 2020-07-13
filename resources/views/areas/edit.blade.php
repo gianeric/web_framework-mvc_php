@@ -13,9 +13,10 @@
     </div>
     @endif
 
-    <h1>Cadastro de Áreas</h1>
+    <h1>Editar Área</h1>
 
-    <form action="{{ route('areas.store') }}" method="post">
+    <form action="{{ route('areas.update', ['area' => $area->id]) }}" method="post">
+        <input type="hidden" name="_method" value="put">
         @include('areas._partial.form')
     </form>
 </div>

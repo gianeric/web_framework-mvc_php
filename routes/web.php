@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +19,24 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//get    retornar um dado
-//post   salvar um dado
-//put    atualizar um dado
-//delete deletar um dado
+// get -> Retornar um dado ou alguma visualização
+// post -> salvar um dado
+// put -> atualizar um dado
+// delete -> excluir um data
 
 Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/areas', 'AreaController@Index');
-//Route::get('/areas/create', 'AreaController@create');
-//Route::get('/areas/store', 'AreaController@store');
+// Route::get('/areas', 'AreaController@index');
+// Route::get('/areas/create', 'AreaController@create');
+// Route::post('/areas/store', 'AreaController@store');
 
-Route::resource('areas', 'AreaController');
+// Route::resource('areas', 'AreaController')
+//     ->only('index', 'edit', 'destroy', 'update', 'store');
+
+// Route::resource('areas', 'AreaController')
+//     ->except('show');
+
+Route::resource('areas', 'AreaController')
+    ->except('show');
+
+Route::resource('studies', 'StudyController')
+    ->except('show');
