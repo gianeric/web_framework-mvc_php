@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::get('/areas', 'API\AreaController@index');
+// Route::post('/areas', 'API\AreaController@store');
+// Route::get('{id}/areas/', 'API\AreaController@show');
+// Route::put('{id}/areas/', 'API\AreaController@update');
+// Route::delete('{id}/areas/', 'API\AreaController@destroy');
+
+Route::apiResources([
+    'areas' => 'API\AreaController',
+    'studies' => 'API\StudyController'
+]);
