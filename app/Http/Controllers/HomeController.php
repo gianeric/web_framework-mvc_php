@@ -33,6 +33,7 @@ class HomeController extends Controller
     {
         //dd(\Correios::cep('89062086'));
         //dd($this->study->estudosEmAndamento());
+
         $estudosEmAtraso    = $this->study->estudosEmAtraso();
         $estudosEmAndamento = $this->study->estudosEmAndamento();
         $estudosConcluidos  = $this->study->estudosConcluidos();
