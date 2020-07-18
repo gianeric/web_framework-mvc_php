@@ -24,6 +24,7 @@ class AreaController extends Controller
 
     public function __construct(Area $area)
     {
+        $this->middleware('auth');
         $this->area = $area;
     }
 
