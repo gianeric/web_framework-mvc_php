@@ -18,7 +18,7 @@ class Admin
     {
         $user = Auth::user();
 
-        if(!$user-> is_admin) {
+        if(!$user->is_admin) {
             abort(404);
         }
 

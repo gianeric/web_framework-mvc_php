@@ -15,7 +15,7 @@ class AddColumnToAreasTable extends Migration
     {
         Schema::table('areas', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned()->nullable();
-
+            
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');

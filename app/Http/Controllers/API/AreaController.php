@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Area;
-use Exception;
 use App\Http\Requests\AreaRequest;
+use Exception;
+use App\Http\Resources\Area as AreaResource;
+use App\Http\Resources\AreaCollection;
 
 class AreaController extends Controller
 {
@@ -35,7 +37,8 @@ class AreaController extends Controller
     public function index()
     {
         $areas = $this->model->all();
-        return response()->json($areas, 201);
+        $areasCollection = new AreaCollection($areas);
+        return response()->json($areasCollection, 200);
     }
 
     /**
@@ -46,14 +49,16 @@ class AreaController extends Controller
      */
     public function store(AreaRequest $request)
     {
+        // dd($request->all());
         // para o código aqui
         try {
             $area = new Area();
             $area->fill($request->all());
             $area->save();
+            $areaResource = new AreaResource($area);
 
-            return response()->json($area, 201);
-        } catch (Exception $e) {
+            return response()->json($areaResource, 201);
+        } catch (\Exception $e) {
             return response()->json([
                 'title' => 'Erro',
                 'msg' => 'Erro interno do servidor'
@@ -69,10 +74,13 @@ class AreaController extends Controller
      */
     public function show($id)
     {
+        // dd($id);
         try {
             $area = $this->model->findOrFail($id);
-            return response()->Json($area);
-        } catch (Exception $e) {
+            $areaResource = new AreaResource($area);
+            //dd($area);
+            return response()->json($areaResource);
+        } catch (\Exception $e) {
             return response()->json([
                 'title' => 'Erro',
                 'msg' => 'Erro interno do servidor'
@@ -87,15 +95,16 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AreaRequest $request, $id)
     {
         try {
             $area = $this->model->find($id);
             $area->fill($request->all());
             $area->save();
+            $areaResource = new AreaResource($area);
 
-            return response()->json($area, 200);
-        } catch (Exception $e) {
+            return response()->json($areaResource, 200);
+        } catch(Exception $erro) {
             return response()->json([
                 'title' => 'Erro',
                 'msg' => 'Erro interno do servidor'
@@ -114,7 +123,7 @@ class AreaController extends Controller
         try{
             $area = $this->model->find($id);
             $area->delete();
- 
+
             return response()->json([], 204);
         } catch(Exception $e) {
             return response()->json([
@@ -122,6 +131,6 @@ class AreaController extends Controller
                 'msg' => 'Erro interno do servidor'
             ], 500);
         }
-       
+        
     }
 }

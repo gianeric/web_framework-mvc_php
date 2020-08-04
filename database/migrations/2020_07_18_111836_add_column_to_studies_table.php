@@ -15,7 +15,7 @@ class AddColumnToStudiesTable extends Migration
     {
         Schema::table('studies', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned()->nullable();
-
+            
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');

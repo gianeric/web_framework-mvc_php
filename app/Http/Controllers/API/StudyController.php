@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Study;
 use Exception;
 use Illuminate\Http\Request;
+use App\Http\Resources\Study as StudyResource;
+use App\Http\Resources\StudyCollection;
+use App\Http\Requests\StudyRequest;
 
 class StudyController extends Controller
 {
@@ -18,7 +21,9 @@ class StudyController extends Controller
     {
         try {
             $studies = $study->all();
-            return response()->json($studies, 200);
+            // dd($studies);
+            $studiesCollection = new StudyCollection($studies);
+            return response()->json($studiesCollection, 200);
         } catch (Exception $e) {
             return response()->json([
                 'title' => 'Erro',
@@ -33,42 +38,50 @@ class StudyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudyRequest $request)
     {
-        //
+        $study = new Study();
+        $study->fill($request->all());
+        $study->save();
+
+        return response()->json(new StudyResource($study), 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Study  $study
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Study $study)
     {
-        //
+        return response()->json(new StudyResource($study), 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Study  $study
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StudyRequest $request, Study $study)
     {
-        //
+        $study->fill($request->all());
+        $study->save();
+
+        return response()->json(New StudyResource($study), 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Study  $study
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Study $study)
     {
-        //
+        $study->delete();
+        return response()->json([], 200);
     }
 }

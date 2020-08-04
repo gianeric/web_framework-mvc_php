@@ -10,14 +10,6 @@ use App\Models\Area;
 class StudyController extends Controller
 {
 
-    // Index -> Listagem dos dados
-    // Create -> Redirecionar para a tela de criação -> Retornar view de cadastro
-    // Store -> Salvar os dados
-    // Edit -> Redireciona para a tela de edição
-    // Update -> Atualizar os dados
-    // Destroy -> Deletar os dados
-    // Show -> Visualizar os dados sem poder editar
-
     /**
      * @var \App\Models\Study
      */
@@ -30,6 +22,7 @@ class StudyController extends Controller
 
     // Area $area
     public function __construct(Study $study, Area $areaParam) {
+        // $this->middleware('auth');
         $this->study = $study;
         $this->area = $areaParam;
         // $this->area = $area;

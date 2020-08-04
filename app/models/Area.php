@@ -12,4 +12,8 @@ class Area extends Model
      * @var array
      */
     protected $fillable = ['description', 'color'];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

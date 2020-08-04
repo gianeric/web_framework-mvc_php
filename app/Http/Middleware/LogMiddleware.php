@@ -2,9 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Observers\AreaObserver;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+// use Log;
 
 class LogMiddleware
 {
@@ -17,7 +19,6 @@ class LogMiddleware
      */
     public function handle($request, Closure $next)
     {
-        //Pegar o usuário que fez a requisicao e grava no log
         $user = Auth::user();
         Log::info(json_encode($user));
 

@@ -13,18 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Auth::routes();
 
 // get -> Retornar um dado ou alguma visualização
 // post -> salvar um dado
 // put -> atualizar um dado
 // delete -> excluir um data
 
-//Route::get('/home', 'HomeController@index')->name('home');
+
 // Route::get('/areas', 'AreaController@index');
 // Route::get('/areas/create', 'AreaController@create');
 // Route::post('/areas/store', 'AreaController@store');
@@ -34,6 +30,12 @@ Auth::routes();
 
 // Route::resource('areas', 'AreaController')
 //     ->except('show');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
 
 Route::group(['prefix' => '', 'as' => '', 'middleware' => ['auth', 'log']], function () {
 
@@ -47,9 +49,3 @@ Route::group(['prefix' => '', 'as' => '', 'middleware' => ['auth', 'log']], func
             ->except('show');
     });
 });
-
-/*Route::resource('areas', 'AreaController')
-    ->except('show');
-
-Route::resource('studies', 'StudyController')
-    ->except('show');*/

@@ -27,21 +27,8 @@ class Study extends Model
         return $this->belongsTo(Area::class);
     }
 
-    public function estudosEmAtraso()
-    {
-        $cont = $this->select('*')->where('status','Em atraso')->count();
-        return $cont;
-    }
-
-    public function estudosEmAndamento()
-    {
-        $cont = $this->select('*')->where('status','Em andamento')->count();
-        return $cont;
-    }
-    
-    public function estudosConcluidos()
-    {
-        $cont = $this->select('*')->where('status','Finalizado')->count();
-        return $cont;
-    }
+    // public function estudosEmAtraso()
+    // {
+    //     return $this->select('name', 'email')->get();
+    // }
 }

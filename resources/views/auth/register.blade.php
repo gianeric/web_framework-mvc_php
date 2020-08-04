@@ -38,13 +38,15 @@
                                 @enderror
                             </div>
                         </div>
- 
+
                         <hr/>
 
                         <div class="form-group row">
                             <label for="zipcode" class="col-md-4 col-form-label text-md-right">CEP</label>
+
                             <div class="col-md-6">
-                                <input type="number" name="zipcode" id="cep" value="{{ old('zipcode') }}" class="form-control @error('zipcode') is-invalid @enderror" required>
+                                <input type="text" name="zipcode" id="cep" value="{{ old('zipcode') }}" 
+                                class="form-control @error('zipcode') is-invalid @enderror" required>
 
                                 @error('zipcode')
                                 <span class="invalid-feedback">
@@ -56,8 +58,10 @@
 
                         <div class="form-group row">
                             <label for="number" class="col-md-4 col-form-label text-md-right">Número</label>
+
                             <div class="col-md-6">
-                                <input type="number" min="1" name="number" id="number" class="form-control @error('number') is-invalid @enderror">
+                                <input type="number" min="1" name="number" id="number" 
+                                class="form-control @error('number') is-invalid @enderror" required>
 
                                 @error('number')
                                 <span class="invalid-feedback">
@@ -66,15 +70,15 @@
                                 @enderror
                             </div>
                         </div>
- 
+
                         <hr/>
-                       
+                        
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
- 
+
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
- 
+
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -82,7 +86,7 @@
                                 @enderror
                             </div>
                         </div>
- 
+
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
